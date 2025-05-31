@@ -1,6 +1,6 @@
 import pandas as pd
 
-from _WorldStatistics import WorldStatistics
+from functions.scrape.world_statistics import WorldStatistics
 from functions.WebScraper import scrape_url
 
 
@@ -102,7 +102,7 @@ class GDP(WorldStatistics):
             link = row['Link']
             country = row['Country']
 
-            country_population_soup = await scrape_url(link, ".rts-counter")
+            country_population_soup = await scrape_url(link, ".datatable-table")
             country_individual_df = self._process_country_table(
                 country_population_soup, table_index=0
             )

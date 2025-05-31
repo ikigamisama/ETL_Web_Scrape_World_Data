@@ -1,10 +1,11 @@
+import asyncio
 from airflow import DAG
+
 from airflow.providers.standard.operators.python import PythonOperator
 from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.providers.amazon.aws.operators.s3 import S3CreateBucketOperator
 from airflow.utils.task_group import TaskGroup
 
-from dotenv import load_dotenv
 from datetime import datetime
 
 from functions.scrape.Factory import ScraperFactory
@@ -12,7 +13,7 @@ from functions.scrape.Factory import ScraperFactory
 
 def run_scraper(scraper_type: str):
     scraper = ScraperFactory.create_scraper(scraper_type)
-    scraper.scrape()
+    asyncio.run(scraper.scrape_and_save())
 
 
 default_args = {
@@ -49,6 +50,12 @@ with DAG(
             task_id='gdp_data',
             python_callable=run_scraper,
             op_kwargs={'scraper_type': 'gdp'}
+        )
+
+        co2_data = PythonOperator(
+            task_id='co2_data',
+            python_callable=run_scraper,
+            op_kwargs={'scraper_type': 'co2'}
         )
 
     create_s3_bucket >> extract_init >> core_entity_transform_task

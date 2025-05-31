@@ -1,6 +1,6 @@
 import pandas as pd
 
-from _WorldStatistics import WorldStatistics
+from functions.scrape.world_statistics import WorldStatistics
 from functions.WebScraper import scrape_url
 
 
@@ -71,7 +71,7 @@ class Population(WorldStatistics):
         # Rename columns
         df = df.rename(columns={
             '#': 'Rank',
-            'Country (or dependency)': 'Country',
+            'Country (ordependency)': 'Country',
             'Link': 'Link',
             'Population (2025)': 'Population_2025',
             'Yearly Change': "Yearly_Change",
@@ -154,7 +154,7 @@ class Population(WorldStatistics):
 
             demographics_df = pd.DataFrame(demographics_country)
             self.save_to_s3(
-                demographics_df, self.bucket_name, "country_demographics.csv")
+                demographics_df, self.bucket_name, "population/country_demographics.csv")
 
     def _process_country_table(self, soup, table_index=0):
         """Process individual country table"""

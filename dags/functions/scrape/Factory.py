@@ -1,15 +1,20 @@
-from _Population import Population
-from _GDP import GDP
+from functions.scrape.population import Population
+from functions.scrape.gdp import GDP
+from functions.scrape.co2 import CO2
 
 
 class ScraperFactory:
 
     @staticmethod
     def create_scraper(scraper_type: str):
-        if scraper_type.lower() == "population":
-            return Population()
-        elif scraper_type.lower() == "gdp":
-            return GDP()
+        factory = {
+            "population": Population(),
+            "gdp": GDP(),
+            "co2": CO2(),
+        }
+
+        if scraper_type in factory:
+            return factory[scraper_type]
         else:
             raise ValueError(f"Unknown scraper type: {scraper_type}")
 
