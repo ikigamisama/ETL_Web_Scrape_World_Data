@@ -1,3 +1,5 @@
+import re
+import json
 import pandas as pd
 
 from functions.scrape.world_statistics import WorldStatistics
@@ -98,21 +100,30 @@ class CO2(WorldStatistics):
 
     async def _process_individual_countries(self, country_df):
         """Process individual country data (first 3 countries)"""
-        demographics_country = []
 
         for i, row in country_df.iterrows():
             link = row['Link']
             country = row['Country']
 
-            country_population_soup = await scrape_url(link, ".datatable-table")
+            country_co2_soup = await scrape_url(link, ".datatable-table")
 
             country_df_current = self._process_country_table(
-                country_population_soup, table_index=0
+                country_co2_soup, table_index=0
             )
             self.save_to_s3(
                 country_df_current,
                 self.bucket_name,
                 f"co2/country/{country}.csv"
+            )
+
+            country_df_sector = self._process_country_table(
+                country_co2_soup, table_index=0
+            )
+
+            self.save_to_s3(
+                country_df_sector,
+                self.bucket_name,
+                f"co2/country/{country}_sector.csv"
             )
 
     def _process_country_table(self, soup, table_index=0):
@@ -138,3 +149,17 @@ class CO2(WorldStatistics):
         })
 
         return df
+
+    def _process_country_secttor(self, soup):
+        script_tag = soup.find(
+            'div', id='global-co2-emissions-chart').find_next_sibling('script')
+        match = re.search(
+            r'const data\s*=\s*(\[\{.*?\}\]);', script_tag.string, re.DOTALL)
+
+        if match:
+            data_json_str = match.group(1)
+            co2_sector_data = json.loads(data_json_str)
+            pd.set_option('display.float_format', '{:.0f}'.format)
+            return pd.DataFrame(co2_sector_data)
+
+        return None

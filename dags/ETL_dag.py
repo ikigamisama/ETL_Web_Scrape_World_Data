@@ -58,4 +58,6 @@ with DAG(
             op_kwargs={'scraper_type': 'co2'}
         )
 
+        population_data >> gdp_data >> co2_data
+
     create_s3_bucket >> extract_init >> core_entity_transform_task

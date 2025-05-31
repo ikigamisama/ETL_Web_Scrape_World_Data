@@ -152,9 +152,9 @@ class Population(WorldStatistics):
             except:
                 print(f"No demographics data found for {country}")
 
-            demographics_df = pd.DataFrame(demographics_country)
-            self.save_to_s3(
-                demographics_df, self.bucket_name, "population/country_demographics.csv")
+        demographics_df = pd.DataFrame(demographics_country)
+        self.save_to_s3(
+            demographics_df, self.bucket_name, "population/country_demographics.csv")
 
     def _process_country_table(self, soup, table_index=0):
         """Process individual country table"""
