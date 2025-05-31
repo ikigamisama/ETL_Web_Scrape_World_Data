@@ -1,0 +1,15 @@
+blog_urls = [
+    "https://www.worldometers.info/world-population/population-by-country/", # Done
+    "https://www.worldometers.info/gdp/gdp-by-country/" # Done
+    "https://www.worldometers.info/co2-emissions/co2-emissions-by-country/"
+    "https://www.worldometers.info/oil/oil-reserves-by-country/",
+    "https://www.worldometers.info/oil/oil-consumption-by-country/",
+    "https://www.worldometers.info/oil/oil-production-by-country/",
+    "https://www.worldometers.info/coal/coal-reserves-by-country/",
+    "https://www.worldometers.info/coal/coal-consumption-by-country/",
+    "https://www.worldometers.info/coal/coal-production-by-country/",
+    "https://www.worldometers.info/demographics/life-expectancy"
+]
+URL = "https://www.worldometers.info"
+
+blog_result = await scrape_urls(blog_urls)

@@ -1,0 +1,16 @@
+duckdb
+fastapi
+uvicorn[standard]
+apache-airflow-providers-amazon
+s3fs
+boto3
+python-dotenv
+SQLAlchemy
+pandas
+fsspec
+requests
+nest_asyncio
+playwright
+fake-useragent
+beautifulsoup4
+tenacity

@@ -1,0 +1,23 @@
+FROM apache/airflow:3.0.1
+
+USER root
+
+
+RUN apt-get update && apt-get install -y \
+    libnss3 \
+    libatk-bridge2.0-0 \
+    libxss1 \
+    libasound2 \
+    libxcomposite1 \
+    libxrandr2 \
+    libgtk-3-0 \
+    libgbm1 \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+USER airflow
+
+COPY requirements.txt /
+RUN pip install --no-cache-dir -r /requirements.txt
+
+RUN playwright install
