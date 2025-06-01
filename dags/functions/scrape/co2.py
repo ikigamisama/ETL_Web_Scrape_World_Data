@@ -116,15 +116,16 @@ class CO2(WorldStatistics):
                 f"co2/country/{country}.csv"
             )
 
-            country_df_sector = self._process_country_table(
+            country_df_sector = self._process_country_sector(
                 country_co2_soup, table_index=0
             )
 
-            self.save_to_s3(
-                country_df_sector,
-                self.bucket_name,
-                f"co2/country/{country}_sector.csv"
-            )
+            if country_df_sector:
+                self.save_to_s3(
+                    country_df_sector,
+                    self.bucket_name,
+                    f"co2/country/{country}_sector.csv"
+                )
 
     def _process_country_table(self, soup, table_index=0):
         """Process individual country table"""
@@ -150,7 +151,7 @@ class CO2(WorldStatistics):
 
         return df
 
-    def _process_country_secttor(self, soup):
+    def _process_country_sector(self, soup):
         script_tag = soup.find(
             'div', id='global-co2-emissions-chart').find_next_sibling('script')
         match = re.search(

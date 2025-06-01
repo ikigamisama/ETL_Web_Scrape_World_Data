@@ -120,7 +120,7 @@ class Population(WorldStatistics):
             link = row['Link']
             country = row['Country']
 
-            country_population_soup = await scrape_url(link, ".rts-counter")
+            country_population_soup = await scrape_url(link, ".datatable-table")
 
             country_df_current = self._process_country_table(
                 country_population_soup, table_index=0

@@ -17,9 +17,9 @@ from tenacity import (
 )
 nest_asyncio.apply()
 
-MAX_RETRIES = 4
+MAX_RETRIES = 10
 MAX_WAIT_BETWEEN_REQ = 5
-MIN_WAIT_BETWEEN_REQ = 1
+MIN_WAIT_BETWEEN_REQ = 2
 REQUEST_TIMEOUT = 30000
 PAGE_LOAD_TIMEOUT = 60000
 
@@ -140,7 +140,6 @@ class WebScraper:
         """Extract content with improved retry logic"""
 
         page = None
-
         try:
             await self.setup_browser()
 
@@ -149,7 +148,6 @@ class WebScraper:
 
             page = await self.context.new_page()
 
-            # Set page timeouts
             page.set_default_timeout(timeout)
             page.set_default_navigation_timeout(PAGE_LOAD_TIMEOUT)
 

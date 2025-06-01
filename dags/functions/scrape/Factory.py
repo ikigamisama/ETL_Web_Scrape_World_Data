@@ -20,4 +20,4 @@ class ScraperFactory:
 
     @staticmethod
     def get_available_scrapers():
-        return ["population", "gdp"]
+        return ["population", "gdp", "co2"]
