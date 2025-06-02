@@ -4,3 +4,7 @@ from .gdp import GDP
 from .population import Population
 from .geography import Geography
 from .oil import Oil
+from .energy import Energy
+from .coal import Coal
+from .gas import Gas
+from .water import Water

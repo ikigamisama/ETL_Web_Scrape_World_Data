@@ -40,3 +40,41 @@ Call log:
 Call log:
   - navigating to "https://www.worldometers.info/oil/oil-reserves-by-country/", waiting until "networkidle"
 
+2025-06-02 23:17:03.786 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/oil/oil-reserves-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/oil/oil-reserves-by-country/", waiting until "networkidle"
+
+2025-06-02 23:50:33.460 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+2025-06-02 23:50:37.599 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+2025-06-03 00:26:10.958 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+Browser logs:
+
+<launching> C:\Users\ikiga\AppData\Local\ms-playwright\chromium_headless_shell-1148\chrome-win\headless_shell.exe --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=ImprovedCookieControls,LazyFrameLoading,GlobalMediaControls,DestroyProfileOnBrowserClose,MediaRouter,DialMediaRouteProvider,AcceptCHFrame,AutoExpandDetailsElement,CertificateTransparencyComponentUpdater,AvoidUnnecessaryBeforeUnloadCheckSync,Translate,HttpsUpgrades,PaintHolding,ThirdPartyStoragePartitioning,LensOverlay,PlzDedicatedWorker --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --disable-blink-features=AutomationControlled --disable-web-security --disable-features=VizDisplayCompositor --no-sandbox --disable-dev-shm-usage --user-data-dir=C:\Users\ikiga\AppData\Local\Temp\playwright_chromiumdev_profile-HprV6S --remote-debugging-pipe --no-startup-window
+<launched> pid=57404
+[pid=57404][err] [0603/002503.016:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A0C031005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404][err] [0603/002516.648:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A0C031005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404][err] [0603/002535.756:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A0C031005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404][err] [0603/002537.608:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A0C031005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404][err] [0603/002539.123:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A0F031005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404][err] [0603/002539.167:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A02032005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404][err] [0603/002539.699:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A05032005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404][err] [0603/002539.935:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A00037005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404][err] [0603/002540.284:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A03037005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404][err] [0603/002542.952:ERROR:ssl_client_socket_impl.cc(878)] handshake failed; returned -1, SSL error code 1, net_error -100
+[pid=57404][err] [0603/002543.445:ERROR:ssl_client_socket_impl.cc(878)] handshake failed; returned -1, SSL error code 1, net_error -100
+[pid=57404][err] [0603/002548.611:ERROR:ssl_client_socket_impl.cc(878)] handshake failed; returned -1, SSL error code 1, net_error -100
+[pid=57404][err] [0603/002555.694:ERROR:ssl_client_socket_impl.cc(878)] handshake failed; returned -1, SSL error code 1, net_error -100
+[pid=57404][err] [0603/002607.680:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A00037005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404][err] [0603/002608.433:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A00037005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404][err] [0603/002609.116:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A00037005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+[pid=57404] <gracefully close start>
+[pid=57404][err] [0603/002610.929:ERROR:gles2_cmd_decoder_passthrough.cc(1053)] [GroupMarkerNotSet(crbug.com/242999)!:A00037005C4E0000]Automatic fallback to software WebGL has been deprecated. Please use the --enable-unsafe-swiftshader flag to opt in to lower security guarantees for trusted content.
+2025-06-03 00:31:28.197 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/coal-reserves-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/coal-reserves-by-country/", waiting until "networkidle"
+
+2025-06-03 00:37:21.594 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/coal-reserves-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/coal-reserves-by-country/", waiting until "networkidle"
+
+2025-06-03 00:40:50.706 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
