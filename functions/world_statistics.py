@@ -28,10 +28,6 @@ class WorldStatistics(ABC):
         """Main method to scrape and save data"""
         pass
 
-    def convert_to_dataframe(self, rows):
-        df = pd.DataFrame(rows[1:], columns=rows[0])
-        return df
-
     def save_to_s3(self, df: pd.DataFrame, bucket: str, key: str):
         """Save DataFrame to MinIO"""
         csv_data = df.to_csv(index=False)
@@ -47,7 +43,14 @@ class WorldStatistics(ABC):
         logger.info(f"Saved to Folder Path: {path}")
 
     def get_data_chart(self, soup, id, isFloat=False):
-        script_tag = soup.find('div', id=id).find_next_sibling('script')
+        div_tag = soup.find('div', id=id)
+        if div_tag is None:
+            return None
+
+        script_tag = div_tag.find_next_sibling('script')
+        if script_tag is None or script_tag.string is None:
+            return None
+
         match = re.search(
             r'const data\s*=\s*(\[\{.*?\}\]);', script_tag.string, re.DOTALL)
 
@@ -63,3 +66,20 @@ class WorldStatistics(ABC):
             return pd.DataFrame(co2_sector_data)
 
         return None
+
+    def convert_to_dataframe(self, rows):
+        df = pd.DataFrame(rows[1:], columns=rows[0])
+        return df
+
+    def get_data_from_table(self, soup, columns, table_index=0):
+        table = soup.find_all('table', class_="datatable-table")[table_index]
+        rows = []
+
+        for tr in table.find_all("tr"):
+            cells = tr.find_all(["td", "th"])
+            row = [cell.get_text(strip=True) for cell in cells]
+            rows.append(row)
+
+        df = self.convert_to_dataframe(rows)
+        df = df.rename(columns=columns)
+        return df

@@ -5,7 +5,7 @@ import argparse
 import datetime as dt
 
 from loguru import logger
-from scrape import CO2, Demographics, GDP, Population
+from scrape import CO2, Demographics, GDP, Population, Geography, Oil
 
 PROGRAM_NAME = "World o Meters Data Scrapper"
 
@@ -18,6 +18,8 @@ class ScraperFactory:
             "gdp": GDP(),
             "co2": CO2(),
             "demographics": Demographics(),
+            "geography": Geography(),
+            "oil": Oil()
         }
 
         if scraper_type in factory:
@@ -27,7 +29,7 @@ class ScraperFactory:
 
     @staticmethod
     def get_available_scrapers():
-        return ["population", "gdp", "co2", "demographics"]
+        return ["population", "gdp", "co2", "demographics", "geography", "oil"]
 
     @staticmethod
     def init_folder(scraper_type: str):
@@ -47,6 +49,13 @@ class ScraperFactory:
             ],
             "demographics": [
                 "./data/population/demographics/country",
+            ],
+            "geography": [
+                "./data/geography/",
+            ],
+            "oil": [
+                "./data/oil/",
+                "./data/oil/country",
             ]
         }
 

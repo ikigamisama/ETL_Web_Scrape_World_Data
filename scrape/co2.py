@@ -20,29 +20,7 @@ class CO2(WorldStatistics):
             ".datatable-container"
         )
 
-        world_df = self._process_world_co2_data(world_co2_emission_table)
-        # self.save_to_s3(world_df, self.bucket_name,"co2/world_co2.csv")
-        self.save_csv(world_df, "co2/world_co2.csv")
-
-        country_df = self._process_country_co2(country_co2_emisstion_table)
-        # self.save_to_s3(country_df, self.bucket_name,"co2/country_co2.csv")
-        self.save_csv(country_df, "co2/country_co2.csv")
-
-        await self._process_individual_countries(country_df)
-
-    def _process_world_co2_data(self, soup, table_index=0):
-        rows = []
-        table = soup.find_all('table', class_="datatable")[table_index]
-
-        for tr in table.find_all("tr"):
-            cells = tr.find_all(["td", "th"])
-            row = [cell.get_text(strip=True) for cell in cells]
-            rows.append(row)
-
-        df = self.convert_to_dataframe(rows)
-
-        # Rename columns
-        df = df.rename(columns={
+        world_df = self.get_data_from_table(world_co2_emission_table, {
             'Year': 'Year',
             'CO2emissions(tons, 2022)': 'CO2_Emission',
             '1 YearChange': "Yearly_Change",
@@ -51,8 +29,14 @@ class CO2(WorldStatistics):
             "Population": "Population",
             "Pop.change": "Population_Change",
         })
+        # self.save_to_s3(world_df, self.bucket_name,"co2/world_co2.csv")
+        self.save_csv(world_df, "co2/world_co2.csv")
 
-        return df
+        country_df = self._process_country_co2(country_co2_emisstion_table)
+        # self.save_to_s3(country_df, self.bucket_name,"co2/country_co2.csv")
+        self.save_csv(country_df, "co2/country_co2.csv")
+
+        await self._process_individual_countries(country_df)
 
     def _process_country_co2(self, soup):
         rows = []
@@ -105,8 +89,15 @@ class CO2(WorldStatistics):
 
             country_co2_soup = await scrape_url(link, ".datatable-table")
 
-            country_df_current = self._process_country_table(
-                country_co2_soup, table_index=0
+            country_df_current = self.get_data_from_table(
+                country_co2_soup, {
+                    'Year': 'Year',
+                    'Fossil CO2emissions(tons)': 'Fossil_CO2_Emission',
+                    'CO2 emissionschange': "CO2_Emission_Change",
+                    'CO2 emissionsper capita': "CO2_Emission_Capita",
+                    "Pop.change": "Population_Change",
+                    "Share of World'sCO2 emissions": "Share_World_Percentage",
+                }
             )
             # self.save_to_s3(
             #     country_df_current,
@@ -128,27 +119,3 @@ class CO2(WorldStatistics):
 
                 self.save_csv(country_df_sector,
                               f"co2/country/{country}_sector.csv")
-
-    def _process_country_table(self, soup, table_index=0):
-        """Process individual country table"""
-        rows = []
-        table = soup.find_all('table', class_="datatable")[table_index]
-
-        for tr in table.find_all("tr"):
-            cells = tr.find_all(["td", "th"])
-            row = [cell.get_text(strip=True) for cell in cells]
-            rows.append(row)
-
-        df = self.convert_to_dataframe(rows)
-
-        # Rename columns
-        df = df.rename(columns={
-            'Year': 'Year',
-            'Fossil CO2emissions(tons)': 'Fossil_CO2_Emission',
-            'CO2 emissionschange': "CO2_Emission_Change",
-            'CO2 emissionsper capita': "CO2_Emission_Capita",
-            "Pop.change": "Population_Change",
-            "Share of World'sCO2 emissions": "Share_World_Percentage",
-        })
-
-        return df

@@ -1,3 +1,42 @@
 2025-06-01 21:50:56.395 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
 2025-06-01 23:53:02.070 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
 2025-06-01 23:54:44.468 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+2025-06-02 00:09:39.861 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+2025-06-02 16:20:41.351 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/geography/countries-of-the-world/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/geography/countries-of-the-world/", waiting until "networkidle"
+
+2025-06-02 18:42:01.183 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/oil/oil-reserves-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/oil/oil-reserves-by-country/", waiting until "networkidle"
+
+2025-06-02 18:45:49.179 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/oil/oil-reserves-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/oil/oil-reserves-by-country/", waiting until "networkidle"
+
+2025-06-02 18:50:24.711 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/oil/oil-reserves-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/oil/oil-reserves-by-country/", waiting until "networkidle"
+
+2025-06-02 18:54:56.548 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/oil/oil-reserves-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/oil/oil-reserves-by-country/", waiting until "networkidle"
+
+2025-06-02 20:24:18.179 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/oil/oil-reserves-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/oil/oil-reserves-by-country/", waiting until "networkidle"
+
+2025-06-02 20:27:33.248 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+2025-06-02 20:38:11.260 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/oil/oil-reserves-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/oil/oil-reserves-by-country/", waiting until "networkidle"
+
+2025-06-02 21:10:44.292 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/oil/oil-reserves-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/oil/oil-reserves-by-country/", waiting until "networkidle"
+
+2025-06-02 21:11:09.790 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+2025-06-02 21:12:56.845 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/oil/oil-reserves-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/oil/oil-reserves-by-country/", waiting until "networkidle"
+
