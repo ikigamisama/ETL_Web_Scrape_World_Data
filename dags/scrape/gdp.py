@@ -1,6 +1,6 @@
 import pandas as pd
 
-from functions.scrape.world_statistics import WorldStatistics
+from functions.world_statistics import WorldStatistics
 from functions.WebScraper import scrape_url
 
 
@@ -13,7 +13,7 @@ class GDP(WorldStatistics):
         world_gdp_table = await scrape_url("https://www.worldometers.info/gdp/", ".datatable-container")
         gdp_country_table = await scrape_url("https://www.worldometers.info/gdp/gdp-by-country/", ".datatable-container")
 
-        gdp_world_df = self._process_world_GDP(world_gdp_table, 0, {
+        gdp_world_df = self.get_data_from_table(world_gdp_table, {
             'Year': 'Year',
             'GDP Real(Inflation adj.)': 'GDP_Inflation_Adjust',
             'GDPGrowth': "GDP_Growth",
@@ -21,39 +21,23 @@ class GDP(WorldStatistics):
             "GDP Nominal(Current USD)": "GDP_Nominal_USD",
             "Pop.Change": "Population_Change",
             "WorldPopulation": "World_Population",
-        })
+        }, 0)
         self.save_to_s3(gdp_world_df, self.bucket_name, "gdp/world_GDP.csv")
 
-        gdp_world_region_df = self._process_world_GDP(world_gdp_table, 1, {
+        gdp_world_region_df = self.get_data_from_table(world_gdp_table, {
             'Region': 'Region',
             'GDP(nominal, 2023)': 'GDP_Nominal',
             'GDPGrowth': "GDP_Growth",
-            "Share ofWorldGDP": "Share_World_GDP",
-        })
-        self.save_to_s3(gdp_world_region_df,
-                        self.bucket_name, "gdp/world_GDP_region.csv")
+            "Share ofWorld GDP": "Share_World_GDP",
+        }, 1)
+        # self.save_to_s3(gdp_world_region_df,self.bucket_name, "gdp/world_GDP_region.csv")
+        self.save_csv(gdp_world_region_df, "gdp/world_GDP_region.csv")
 
         gdp_country_df = self._process_country_GDP(gdp_country_table)
         self.save_to_s3(gdp_country_df, self.bucket_name,
                         "gdp/country_population.csv")
 
         await self._process_individual_country_GDP(gdp_country_df)
-
-        print("GDP data scraping completed!")
-
-    def _process_world_GDP(self, soup, index, columns) -> pd.DataFrame:
-        rows = []
-        table = soup.find_all('table', class_="datatable")[index]
-
-        for tr in table.find_all("tr"):
-            cells = tr.find_all(["td", "th"])
-            row = [cell.get_text(strip=True) for cell in cells]
-            rows.append(row)
-
-        df = self.convert_to_dataframe(rows)
-
-        df = df.rename(columns=columns)
-        return df
 
     def _process_country_GDP(self, soup) -> pd.DataFrame:
         rows = []
@@ -103,33 +87,18 @@ class GDP(WorldStatistics):
             country = row['Country']
 
             country_population_soup = await scrape_url(link, ".datatable-table")
-            country_individual_df = self._process_country_table(
-                country_population_soup, table_index=0
+            country_individual_df = self.get_data_from_table(
+                country_population_soup, {
+                    'Year': 'Year',
+                    'GDP Nominal(Current USD)': 'GDP_Nominal',
+                    'GDP Real(Inflation adj.)': 'GDP_Real_Inflation_Adjust',
+                    'GDPChange': 'GDP_Change',
+                    'GDPpercapita': "GDP_per_capita",
+                    "Pop.Change": "Population_Change",
+                }, table_index=0
             )
             self.save_to_s3(
                 country_individual_df,
                 self.bucket_name,
                 f"gdp/country/{country}.csv"
             )
-
-    def _process_country_table(self, soup, table_index=0):
-        """Process individual country table"""
-        rows = []
-        table = soup.find_all('table', class_="datatable")[table_index]
-
-        for tr in table.find_all("tr"):
-            cells = tr.find_all(["td", "th"])
-            row = [cell.get_text(strip=True) for cell in cells]
-            rows.append(row)
-
-        df = self.convert_to_dataframe(rows)
-        df = df.rename(columns={
-            'Year': 'Year',
-            'GDP Nominal(Current USD)': 'GDP_Nominal',
-            'GDP Real(Inflation adj.)': 'GDP_Real_Inflation_Adjust',
-            'GDPChange': 'GDP_Change',
-            'GDPpercapita': "GDP_per_capita",
-            "Pop.Change": "Population_Change",
-        })
-
-        return df

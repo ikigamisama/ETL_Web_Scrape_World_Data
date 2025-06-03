@@ -8,7 +8,6 @@ blog_urls = [
     "https://www.worldometers.info/coal/coal-reserves-by-country/",
     "https://www.worldometers.info/coal/coal-consumption-by-country/",
     "https://www.worldometers.info/coal/coal-production-by-country/",
-    "https://www.worldometers.info/demographics/life-expectancy"
 ]
 URL = "https://www.worldometers.info"
 

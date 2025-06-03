@@ -1,5 +1,4 @@
 import random
-import requests
 import asyncio
 import nest_asyncio
 
@@ -12,8 +11,6 @@ from tenacity import (
     retry_if_exception_type,
     stop_after_attempt,
     wait_exponential,
-    wait_random,
-    RetryError
 )
 nest_asyncio.apply()
 
@@ -22,6 +19,11 @@ MAX_WAIT_BETWEEN_REQ = 5
 MIN_WAIT_BETWEEN_REQ = 2
 REQUEST_TIMEOUT = 30000
 PAGE_LOAD_TIMEOUT = 60000
+
+
+class SkipScrape(Exception):
+    """Raised to indicate that scraping should be skipped (e.g. 404)."""
+    pass
 
 
 class WebScraper:
@@ -162,7 +164,7 @@ class WebScraper:
                 raise Exception(f"No response received for {url}")
 
             if response.status >= 400:
-                raise Exception(f"HTTP {response.status} error for {url}")
+                raise SkipScrape(f"HTTP {response.status} error for {url}")
 
             print(f"Waiting for selector: {selector}")
             await page.wait_for_selector(selector, timeout=timeout)

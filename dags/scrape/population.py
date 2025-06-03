@@ -1,6 +1,6 @@
 import pandas as pd
 
-from functions.scrape.world_statistics import WorldStatistics
+from functions.world_statistics import WorldStatistics
 from functions.WebScraper import scrape_url
 
 
@@ -25,13 +25,29 @@ class Population(WorldStatistics):
         self.save_to_s3(country_df, self.bucket_name,
                         "population/country_population.csv")
 
-        world_df = self._process_world_population(
-            world_population_table, table_index=0)
+        world_df = self.get_data_from_table(
+            world_population_table, {
+                'Year(July 1)': 'Year',
+                'Population': 'Population',
+                'Yearly %Change': "Yearly_Change_Percent",
+                "YearlyChange": "Yearly_Change",
+                "MedianAge": "Median_Age",
+                "FertilityRate": "Fertility_Rate",
+                "Density(P/Km²)": "Density_Area",
+            }, 0)
         self.save_to_s3(world_df, self.bucket_name,
                         "population/world_population.csv")
 
-        world_forecast_df = self._process_world_population(
-            world_population_table, table_index=1)
+        world_forecast_df = self.get_data_from_table(
+            world_population_table, {
+                'Year(July 1)': 'Year',
+                'Population': 'Population',
+                'Yearly %Change': "Yearly_Change_Percent",
+                "YearlyChange": "Yearly_Change",
+                "MedianAge": "Median_Age",
+                "FertilityRate": "Fertility_Rate",
+                "Density(P/Km²)": "Density_Area",
+            }, 1)
         self.save_to_s3(world_forecast_df, self.bucket_name,
                         "population/world_population_forecast.csv")
 
@@ -67,47 +83,20 @@ class Population(WorldStatistics):
             rows.append(row)
 
         df = self.convert_to_dataframe(rows)
-
-        # Rename columns
         df = df.rename(columns={
             '#': 'Rank',
             'Country (ordependency)': 'Country',
             'Link': 'Link',
             'Population (2025)': 'Population_2025',
-            'Yearly Change': "Yearly_Change",
-            "Net Change": "Net_Change",
-            "Density (P/Km²)": "Density_Area",
-            "Land Area (Km²)": "Land_Area",
-            "Migrants (net)": "Migrants",
-            "Fert. Rate": "Fertility_Rate",
-            "Median Age": "Median_Age",
-            "Urban Pop %": "Urban_Population_Percent",
-            "World Share": "World_Share_Percentage"
-        })
-
-        return df
-
-    def _process_world_population(self, soup, table_index=0):
-        """Process world population table"""
-        rows = []
-        table = soup.find_all('table', class_="datatable")[table_index]
-
-        for tr in table.find_all("tr"):
-            cells = tr.find_all(["td", "th"])
-            row = [cell.get_text(strip=True) for cell in cells]
-            rows.append(row)
-
-        df = self.convert_to_dataframe(rows)
-
-        # Rename columns
-        df = df.rename(columns={
-            'Year (July 1)': 'Year',
-            'Population': 'Population',
-            'Yearly % Change': "Yearly_Change_Percent",
-            "Yearly Change": "Yearly_Change",
-            "Median Age": "Median_Age",
-            "Fertility Rate": "Fertility_Rate",
-            "Density (P/Km²)": "Density_Area",
+            'YearlyChange': "Yearly_Change",
+            "NetChange": "Net_Change",
+            "Density(P/Km²)": "Density_Area",
+            "Land Area(Km²)": "Land_Area",
+            "Migrants(net)": "Migrants",
+            "Fert.Rate": "Fertility_Rate",
+            "MedianAge": "Median_Age",
+            "UrbanPop %": "Urban_Population_Percent",
+            "WorldShare": "World_Share_Percentage"
         })
 
         return df
@@ -116,7 +105,7 @@ class Population(WorldStatistics):
         """Process individual country data (first 3 countries)"""
         demographics_country = []
 
-        for i, row in country_df.iterrows():
+        for _, row in country_df.iterrows():
             link = row['Link']
             country = row['Country']
 
@@ -153,40 +142,29 @@ class Population(WorldStatistics):
                 print(f"No demographics data found for {country}")
 
         demographics_df = pd.DataFrame(demographics_country)
-        self.save_to_s3(
-            demographics_df, self.bucket_name, "population/country_demographics.csv")
+        self.save_to_s3(demographics_df, self.bucket_name,
+                        "population/country_demographics.csv")
 
     def _process_country_table(self, soup, table_index=0):
         """Process individual country table"""
-        rows = []
-        table = soup.find_all('table', class_="datatable")[table_index]
 
-        for tr in table.find_all("tr"):
-            cells = tr.find_all(["td", "th"])
-            row = [cell.get_text(strip=True) for cell in cells]
-            rows.append(row)
-
-        df = self.convert_to_dataframe(rows)
-
-        # Rename columns
-        df = df.rename(columns={
+        df = self.get_data_from_table(soup, {
             'Year': 'Year',
             'Population': 'Population',
-            'Yearly % Change': 'Yearly_Change_Percent',
-            'Yearly Change': 'Yearly_Change',
-            'Migrants (net)': "Migrants",
-            "Median Age": "Median_Age",
-            "Fertility Rate": "Fertility_Rate",
-            "Density (P/Km²)": "Density_Area",
-            "Urban Pop %": "Urban_Population_Percentage",
-            "Urban Population": "Urban_Population",
-            "World Population": "World_Population",
-            "Country's Share of World Pop": "Country_Share_World_Pop_Percentage",
-        })
+            'Yearly %Change': 'Yearly_Change_Percent',
+            'YearlyChange': 'Yearly_Change',
+            'Migrants(net)': "Migrants",
+            "MedianAge": "Median_Age",
+            "FertilityRate": "Fertility_Rate",
+            "Density(P/Km²)": "Density_Area",
+            "UrbanPop %": "Urban_Population_Percentage",
+            "UrbanPopulation": "Urban_Population",
+            "WorldPopulation": "World_Population",
+            "Country'sShare ofWorld Pop": "Country_Share_World_Pop_Percentage",
+        }, table_index)
 
-        # Handle Global Rank column
         for col in df.columns:
-            if col.endswith('Global Rank'):
+            if col.endswith('GlobalRank'):
                 df = df.rename(columns={col: 'Global_Rank'})
                 break
 
