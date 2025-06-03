@@ -1,5 +1,3 @@
-import pandas as pd
-
 from functions.world_statistics import WorldStatistics
 from functions.WebScraper import scrape_url
 

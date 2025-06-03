@@ -78,3 +78,98 @@ Call log:
   - navigating to "https://www.worldometers.info/coal/coal-reserves-by-country/", waiting until "networkidle"
 
 2025-06-03 00:40:50.706 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+2025-06-03 10:42:51.995 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+2025-06-03 11:05:46.609 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/coal-production-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/coal-production-by-country/", waiting until "networkidle"
+
+2025-06-03 11:06:48.696 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/coal-production-by-country/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/coal-production-by-country/", waiting until "networkidle"
+
+2025-06-03 11:07:38.837 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+2025-06-03 11:08:43.438 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/", waiting until "networkidle"
+
+2025-06-03 11:09:45.514 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/", waiting until "networkidle"
+
+2025-06-03 11:10:47.575 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/", waiting until "networkidle"
+
+2025-06-03 11:10:50.149 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+2025-06-03 12:06:14.561 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/israel-coal/#coal-consumption: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/israel-coal/#coal-consumption", waiting until "networkidle"
+
+2025-06-03 12:08:44.996 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/morocco-coal/#coal-consumption: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/morocco-coal/#coal-consumption", waiting until "networkidle"
+
+2025-06-03 12:09:47.084 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/morocco-coal/#coal-consumption: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/morocco-coal/#coal-consumption", waiting until "networkidle"
+
+2025-06-03 12:10:49.164 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/morocco-coal/#coal-consumption: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/morocco-coal/#coal-consumption", waiting until "networkidle"
+
+2025-06-03 12:11:53.231 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/coal/morocco-coal/#coal-consumption: Page.goto: Timeout 60000ms exceeded.
+Call log:
+  - navigating to "https://www.worldometers.info/coal/morocco-coal/#coal-consumption", waiting until "networkidle"
+
+2025-06-03 16:54:19.660 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/south-sudan-water/: Browser.new_context: Connection closed while reading from the driver
+2025-06-03 16:54:19.672 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/jamaica-water/: BrowserContext.new_page: Connection closed while reading from the driver
+2025-06-03 16:54:19.672 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/somalia-water/: Browser.new_context: Connection closed while reading from the driver
+2025-06-03 16:54:19.673 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/nicaragua-water/: Browser.new_context: Connection closed while reading from the driver
+2025-06-03 16:54:19.673 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/qatar-water/: Browser.new_context: Connection closed while reading from the driver
+2025-06-03 16:54:19.673 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/russia-water/: Browser.new_context: Connection closed while reading from the driver
+2025-06-03 16:54:19.674 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/oman-water/: Browser.new_context: Connection closed while reading from the driver
+2025-06-03 16:54:19.674 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/slovenia-water/: Browser.new_context: Connection closed while reading from the driver
+2025-06-03 16:54:19.674 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/spain-water/: Browser.new_context: Connection closed while reading from the driver
+2025-06-03 16:54:19.674 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/singapore-water/: BrowserContext.new_page: Connection closed while reading from the driver
+2025-06-03 16:54:19.675 | ERROR    | functions.WebScraper:close:202 - Error closing browser: Browser.close: Connection closed while reading from the driver
+2025-06-03 18:08:44.499 | ERROR    | functions.WebScraper:close:202 - Error closing browser: BrowserContext.close: Target page, context or browser has been closed
+2025-06-03 19:01:55.102 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/monaco-water/: Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(".not-prose") to be visible
+
+2025-06-03 19:02:29.741 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/monaco-water/: Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(".not-prose") to be visible
+
+2025-06-03 19:03:05.146 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/monaco-water/: Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(".not-prose") to be visible
+
+2025-06-03 19:03:42.423 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/monaco-water/: Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(".not-prose") to be visible
+
+2025-06-03 19:04:20.298 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/monaco-water/: Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(".not-prose") to be visible
+
+2025-06-03 19:04:57.869 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/monaco-water/: Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(".not-prose") to be visible
+
+2025-06-03 19:05:36.058 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/monaco-water/: Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(".not-prose") to be visible
+
+2025-06-03 19:06:13.775 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/monaco-water/: Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(".not-prose") to be visible
+
+2025-06-03 19:06:51.735 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/monaco-water/: Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(".not-prose") to be visible
+
+2025-06-03 19:07:29.907 | ERROR    | functions.WebScraper:extract_scrape_content:184 - Error scraping https://www.worldometers.info/water/monaco-water/: Page.wait_for_selector: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator(".not-prose") to be visible
+

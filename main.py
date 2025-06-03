@@ -6,6 +6,7 @@ import datetime as dt
 
 from loguru import logger
 from scrape import (
+    Agriculture,
     CO2,
     Demographics,
     GDP,
@@ -34,7 +35,8 @@ class ScraperFactory:
             "energy": Energy(),
             'coal': Coal(),
             'gas': Gas(),
-            "water": Water()
+            "water": Water(),
+            "agriculture": Agriculture()
         }
 
         if scraper_type in factory:
@@ -44,7 +46,7 @@ class ScraperFactory:
 
     @staticmethod
     def get_available_scrapers():
-        return ["population", "gdp", "co2", "demographics", "geography", "oil", "energy", "gas", "coal", 'water']
+        return ["population", "gdp", "co2", "demographics", "geography", "oil", "energy", "gas", "coal", 'water', "agriculture"]
 
     @staticmethod
     def init_folder(scraper_type: str):
@@ -86,6 +88,10 @@ class ScraperFactory:
             "water": [
                 "./data/water/",
                 "./data/water/country"
+            ],
+            "agriculture": [
+                "./data/agriculture/",
+                "./data/agriculture/country"
             ]
         }
 
