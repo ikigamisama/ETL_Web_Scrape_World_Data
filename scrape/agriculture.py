@@ -38,30 +38,48 @@ class Agriculture(WorldStatistics):
             Crop_Area_Hectares = None
             Share_World_Crop_Area = None
 
-            card_data = country_soup.find('h2', id="undernourished").find_next_sibling(
-                'div', class_="not-prose bg-white border rounded shadow-sm text-center max-w-xl mx-auto")
+            undernourished_header = country_soup.find(
+                'h2', id="undernourished")
+            card_data = None
+            if undernourished_header:
+                card_data = undernourished_header.find_next_sibling(
+                    'div', class_="not-prose bg-white border rounded shadow-sm text-center max-w-xl mx-auto"
+                )
             if card_data:
                 undernourished_data = [data.get_text(
                     strip=True) for data in card_data.find_all('strong')]
-                Undernourished_People = undernourished_data[0]
-                Undernourished_People_Percent = undernourished_data[1]
-                Share_Global_Undernourished = undernourished_data[2]
+                if len(undernourished_data) >= 3:
+                    Undernourished_People = undernourished_data[0]
+                    Undernourished_People_Percent = undernourished_data[1]
+                    Share_Global_Undernourished = undernourished_data[2]
 
-            forest_card_data = country_soup.find('h2', id="forest").find_next_sibling(
-                'div', class_="not-prose bg-white border rounded shadow-sm text-center max-w-3xl mx-auto")
+            # Forest section
+            forest_header = country_soup.find('h2', id="forest")
+            forest_card_data = None
+            if forest_header:
+                forest_card_data = forest_header.find_next_sibling(
+                    'div', class_="not-prose bg-white border rounded shadow-sm text-center max-w-3xl mx-auto"
+                )
             if forest_card_data:
                 forest_data = [data.get_text(
                     strip=True) for data in forest_card_data.find_all('strong')]
-                Forest_Hectares = forest_data[0]
-                Share_World_Forest = forest_data[1]
+                if len(forest_data) >= 2:
+                    Forest_Hectares = forest_data[0]
+                    Share_World_Forest = forest_data[1]
 
-            crop_card_data = country_soup.find('h2', id="cropland").find_next_sibling(
-                'div', class_="not-prose bg-white border rounded shadow-sm text-center max-w-3xl mx-auto")
+            # Cropland section
+            crop_header = country_soup.find('h2', id="cropland")
+            crop_card_data = None
+            if crop_header:
+                crop_card_data = crop_header.find_next_sibling(
+                    'div', class_="not-prose bg-white border rounded shadow-sm text-center max-w-3xl mx-auto"
+                )
             if crop_card_data:
                 crop_data = [data.get_text(strip=True)
                              for data in crop_card_data.find_all('strong')]
-                Crop_Area_Hectares = crop_data[0]
-                Share_World_Crop_Area = crop_data[1]
+                if len(crop_data) >= 2:
+                    Crop_Area_Hectares = crop_data[0]
+                    Share_World_Crop_Area = crop_data[1]
 
             country_agriculture_list.append({
                 "Country": country,
