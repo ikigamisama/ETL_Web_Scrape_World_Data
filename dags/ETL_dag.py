@@ -27,7 +27,7 @@ with DAG(
     description="Comprehensive ETL pipeline for world statistics data",
     schedule=None,
     default_args=default_args,
-    start_date=datetime(2025, 5, 1),
+    start_date=datetime(2025, 6, 1),
     tags=['ETL', 'WebScrape', 'WorldData', 'Statistics'],
     catchup=False,
 ) as dag:
@@ -113,7 +113,4 @@ with DAG(
         )
 
     # Dependencies
-    create_s3_bucket >> extract_init
-    extract_init >> [core_data_group, env_data_group, energy_data_group]
-    population_task >> demographics_task
-    core_data_group >> dependent_data_group
+    create_s3_bucket >> extract_init >> core_data_group >> env_data_group >> energy_data_group >> dependent_data_group

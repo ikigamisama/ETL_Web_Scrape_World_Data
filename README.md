@@ -1,5 +1,7 @@
 # 🌍 ETL Web Scrape World Data
 
+![alt text](image.png)
+
 **ETL_Web_Scrape_World_Data** is a comprehensive web scraping ETL pipeline using **Apache Airflow 3**, **Docker**, and **MinIO** to automate the extraction and storage of global statistics from [Worldometers.info](https://www.worldometers.info/). This pipeline collects 11 different categories of world data including demographics, economics, energy, environment, and geographic information.
 
 ---
@@ -284,10 +286,7 @@ with DAG(
         )
 
     # Dependencies
-    create_s3_bucket >> extract_init
-    extract_init >> [core_data_group, env_data_group, energy_data_group]
-    population_task >> demographics_task  # Demographics requires population data
-    core_data_group >> dependent_data_group
+    create_s3_bucket >> extract_init >> core_data_group >> env_data_group >> energy_data_group >> dependent_data_group
 ```
 
 ---
